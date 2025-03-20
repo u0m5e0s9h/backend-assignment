@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Match {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  expertId String @db.ObjectId
+  clientId String @db.ObjectId  //  
+  rating   Float
+  specialization String?
+
+  expert Expert @relation(fields: [expertId], references: [id])
+  client Client @relation(fields: [clientId], references: [id])
+}
+
+
+model Expert {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  rating  Float
+  matches Match[] @relation()
+}
+
+model Client {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  matches Match[] @relation()
+}
