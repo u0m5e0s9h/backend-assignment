@@ -59,6 +59,13 @@ The API will be available at: **`http://localhost:3000`**
 - Filter by specialization or rating
 
 ```sh
+ GET /matches?specialization=Cardiology
+```
+```sh
+ GET /matches?rating=4.5
+```
+
+```sh
 GET /matches?specialization=Cardiology&rating=4.5
 ```
 
