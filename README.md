@@ -28,7 +28,7 @@ PORT=3000
 ### 4️⃣ **Run Prisma Migrations**
 ```sh
 npx prisma generate
-npx prisma migrate dev
+
 ```
 
 ### 5️⃣ **Start the Server**
